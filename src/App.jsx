@@ -1,10 +1,17 @@
+import { Routes, Route } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Navigation from './components/Navigation'
-import { Routes, Route } from 'react-router-dom'
+
+// Pages
+import HomePage from './pages/HomePage'
+import Films from './pages/Films'
+import Film from './pages/Film'
+import People from './pages/People'
+import Person from './pages/Person'
+
+// Styling
 import 'bootstrap/dist/css/bootstrap.css'
 import './App.css'
-import HomePage from './pages/HomePage'
-import SearchStarWars from './pages/SearchStarWars'
 
 const App = () => {
 
@@ -15,7 +22,10 @@ const App = () => {
 			<Container className="py-3">
 				<Routes>
 					<Route path="/" element={<HomePage />} />
-					<Route path="/search" element={<SearchStarWars />} />
+					<Route path="/people" element={<People />} />
+					<Route path="/films" element={<Films />} />
+					<Route path="/films/:id" element={<Film />} />
+					<Route path="/people/:id" element={<Person />} />
 				</Routes>
 			</Container>
 		</div>
