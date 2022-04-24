@@ -1,3 +1,2 @@
-# Hacker News Search
+# Star Wars Encyclopedia
 
-This project is a simple Hacker News Search for demonstrating Search Parameters as well as pagination in React Router.
