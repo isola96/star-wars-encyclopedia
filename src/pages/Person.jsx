@@ -1,7 +1,7 @@
 const Person = () => {
     return (
         <>
-            <h1>Person</h1>
+            <h1>Person Details</h1>
         </>
     )
 }
