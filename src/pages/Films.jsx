@@ -1,81 +1,58 @@
-import { useState, useEffect } from "react"
-import axios from "axios"
-import Button from 'react-bootstrap/Button'
-import { Link } from 'react-router-dom'
+import SwapiApi from "../services/SWAPI"
 import { getIdFromUrl } from '../helpers/index'
+import { useState, useEffect } from "react"
+import { Link } from 'react-router-dom'
+import { Button, Row, Col } from 'react-bootstrap'
 
 const Films = () => {
-    const [films, setFilms] = useState([])
-    const [page, setPage] = useState(1)
+    const [films, setFilms] = useState("")
 
     // Get films from API
-	const getFilms = async () => {
-        try {
-			const res = await axios.get('https://swapi.dev/api/films')
-			const data = res.data.results
-			setFilms(data)
-			return data
-		} catch (err) {
-			return { message: err.message }
-		}
+	const getFilmsFromSwapi = async () => {
+        const data = await SwapiApi.getFilms()
+		setFilms(data)
 	}
 
     // Get films from API when component is first mounted
 	useEffect(() => {
-		getFilms()
-	}, [])
+		getFilmsFromSwapi()
+	}, [])  
 
     return (
        <>
         <h1>Films</h1>
-        <div className='d-flex flex-wrap justify-content-center'>
-            {films.map(film => (
-                <div key={film.episode_id} className='card border-secondary m-3 col-3'>
-                    <div className='card-header'>
-                        <h2>{film.title}</h2>
+            <Row xs={1} md={2} lg={3}>
+            {films && films.results.map((film) => (
+                <Col>
+                    <div key={film.episode_id} className="card"> 
+                        <div className="cardHeader">
+                            <h3>{film.title}</h3>
+                        </div>
+
+                        <div className="cardBody">
+                            <Row>
+                                Episode {film.episode_id}
+                            </Row>
+                            <Row>
+                                Released {film.release_date}
+                            </Row>
+                            <Row>
+                                {film.characters.length} characters
+                            </Row>
+                        </div>
+
+                        <div className='buttonWrapper'>
+                            <Button 
+                                variant="primary" 
+                                as={Link} 
+                                to={`/films/${getIdFromUrl(film.url)}`}
+                            >Read more</Button>
+                        </div>
                     </div>
-                    <div className='card-body'>
-                        <p className='text-dark'>
-                            <span>Episode: </span>
-                            {film.episode_id}
-                        </p>
-                        <hr />
-                        <p className='text-dark'>
-                            <span>Released: </span>
-                            {film.release_date}
-                        </p>
-                        <hr />
-                        <p className='text-dark'>
-                            <span>Characters: </span>
-                            {film.characters.length}
-                        </p>
-                        <Button 
-                            variant="primary" 
-                            as={Link} 
-                            to={`/films/${getIdFromUrl(film.url)}`}
-                        >Read more</Button>
-                    </div>
-                </div>
+                </Col>
             ))}
-        </div>
-        <div className="d-flex justify-content-between align-items-center mt-4">
-			<div className="prev">
-				<Button
-					disabled={page === 1}
-					onClick={() => setPage(prevValue => prevValue - 1)}
-					variant="primary"
-				>Previous Page</Button>
-			</div>
-			<div className="page">{page}</div>
-			<div className="next">
-				<Button
-					disabled={page + 1 >= page}
-					onClick={() => setPage(prevValue => prevValue + 1)}
-					variant="primary"
-				>Next Page</Button>
-			</div>
-		</div>
-       </>
+            </Row>
+        </>
     )
 }
 
