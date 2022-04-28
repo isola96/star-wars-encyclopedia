@@ -14,19 +14,19 @@ const getFilms = async () => {
 }
 
 // Get one film
-const getFilm = async (id) => {
+const getOneFilm = async (id) => {
     const res = await axios.get(`/films/${id}`)
     return res.data
 }
 
 // Get all people
-const getPeople = async (page) => {
-    const res = await axios.get(`/people/?page=${page}`)
+const getPeople = async () => {
+    const res = await axios.get(`/people`)
     return res.data
 }
 
 // Get one person 
-const getPerson = async (id) => {
+const getOnePerson = async (id) => {
     const res = await axios.get(`/people/${id}`)
     return res.data
 }
@@ -34,6 +34,6 @@ const getPerson = async (id) => {
 export default {
     getFilms,
     getPeople,
-    getFilm,
-    getPerson,
+    getOneFilm,
+    getOnePerson,
 }
