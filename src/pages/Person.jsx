@@ -3,15 +3,18 @@ import { useState, useEffect } from "react"
 import { Row, Col, Button } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { getIdFromUrl } from '../helpers/index'
 
 const Person = () => {
     const [person, setPerson] = useState("")
     const { id } = useParams()
+    const [films, setFilms] = useState([])
 
     // Get one person
     const getPerson = async () => {
         const data = await SwapiAPI.getOnePerson(id)
         setPerson(data)
+        setFilms(data.films)
     }
 
     // Get person from API when component is first mounted
@@ -104,6 +107,16 @@ const Person = () => {
                             <Row className="cardRow"  md={3}>
                                 <Col className="cardColLeft">
                                     <p>Films </p>
+                                </Col>
+
+                                <Col className="cardColRight">
+                                    {films.map(films => (
+                                        <Link   
+                                            to={`/films/${getIdFromUrl(films)}`} 
+                                            key={getIdFromUrl(films)}>
+                                            <li>Film {getIdFromUrl(films)}</li>
+                                        </Link>
+                                    ))} 
                                 </Col>
                             </Row>
                         </div>
