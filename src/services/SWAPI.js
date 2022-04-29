@@ -5,7 +5,7 @@
  */
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://swapi.dev/api/' 
+axios.defaults.baseURL = 'https://swapi.dev/api' 
 
 // Get all films 
 const getFilms = async () => {
@@ -20,8 +20,8 @@ const getOneFilm = async (id) => {
 }
 
 // Get all people
-const getPeople = async () => {
-    const res = await axios.get(`/people`)
+const getPeople = async (page) => {
+    const res = await axios.get(`/people/?page=${page}`)
     return res.data
 }
 

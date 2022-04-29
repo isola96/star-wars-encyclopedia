@@ -9,22 +9,21 @@ const People = () => {
     const [page, setPage] = useState(1)
 
     // Get people from API
-    const getPeople = async () => {
-            const data = await Swapi.getPeople()
+    const getPeople = async (page) => {
+            const data = await Swapi.getPeople(page)
             setPeople(data)
         }
 
     // Get people from API when component is first mounted
     useEffect(() => {
-        getPeople()
-    }, [])
-
-    console.log(people)
+        getPeople(page)
+    }, [page])
 
     return (
         <>
             <h1>People</h1>
             <Row xs={1} md={2} lg={3}>
+
             {people && people.results.map((person) => (
                 <Col>
                     <div className="card"> 
@@ -57,15 +56,15 @@ const People = () => {
             <div className="d-flex justify-content-between align-items-center mt-4">
                 <div className="prev">
                     <Button
-                        disabled={page === 1}
-                        onClick={() => setPage(prevValue => prevValue - 1)}
+                        disabled={!people.previous || page <= 1}
+                        onClick={() => setPage(prevValue => prevValue - 1)}                        
                         variant="primary"
                     >Previous Page</Button>
                 </div>
                 <div className="page">{page}</div>
                 <div className="next">
                     <Button
-                        disabled={page + 1 >= page}
+                        disabled={!people.next || page >= 9}
                         onClick={() => setPage(prevValue => prevValue + 1)}
                         variant="primary"
                     >Next Page</Button>
