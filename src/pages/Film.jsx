@@ -3,15 +3,18 @@ import { useState, useEffect } from "react"
 import { Row, Col, Button } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { getIdFromUrl } from '../helpers/index'
 
 const Film = () => {
     const [film, setFilm] = useState([])
     const { id } = useParams()
+    const [characters, setCharacters] = useState([])
 
     // Get one film
     const getFilm = async () => {
         const data = await SwapiAPI.getOneFilm(id)
         setFilm(data)
+        setCharacters(data.characters)
 	}
 
     // Get film from API when component is first mounted
@@ -67,6 +70,21 @@ const Film = () => {
                                     <h3>Characters in this film:</h3>
                                 </Col>
                             </Row>
+
+                            <Row className="cardRow" md={3}>
+                                <Col className="cardColLeft">
+                                    <p>Characters</p>
+                                </Col>
+
+                                <Col className="cardColRight">
+                                    {characters.map(character => (
+                                        <Link to={`/people/${getIdFromUrl(character)}`} key={character}>
+                                            <li>Character {getIdFromUrl(character)}</li>
+                                        </Link>
+                                    ))} 
+                                </Col>
+                            </Row>
+
                         </div>
                         <div className='buttonWrapper'>
                             <Button 
