@@ -55,22 +55,22 @@ const People = () => {
             ))}
             </Row>
             <div className="d-flex justify-content-between align-items-center mt-4">
-			<div className="prev">
-				<Button
-					disabled={page === 1}
-					onClick={() => setPage(prevValue => prevValue - 1)}
-					variant="primary"
-				>Previous Page</Button>
-			</div>
-			<div className="page">{page}</div>
-			<div className="next">
-				<Button
-					disabled={page + 1 >= page}
-					onClick={() => setPage(prevValue => prevValue + 1)}
-					variant="primary"
-				>Next Page</Button>
-			</div>
-		</div>
+                <div className="prev">
+                    <Button
+                        disabled={page === 1}
+                        onClick={() => setPage(prevValue => prevValue - 1)}
+                        variant="primary"
+                    >Previous Page</Button>
+                </div>
+                <div className="page">{page}</div>
+                <div className="next">
+                    <Button
+                        disabled={page + 1 >= page}
+                        onClick={() => setPage(prevValue => prevValue + 1)}
+                        variant="primary"
+                    >Next Page</Button>
+                </div>
+		    </div>
         </>
     )
 }
