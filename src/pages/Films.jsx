@@ -6,6 +6,7 @@ import { Button, Row, Col } from 'react-bootstrap'
 
 const Films = () => {
     const [films, setFilms] = useState("")
+    const [page, setPage] = useState(1)
 
     // Get films from API
 	const getFilmsFromSwapi = async () => {
@@ -52,6 +53,23 @@ const Films = () => {
                 </Col>
             ))}
             </Row>
+            <div className="d-flex justify-content-between align-items-center mt-4">
+                <div className="prev">
+                    <Button
+                        disabled={page === 1}
+                        onClick={() => setPage(prevValue => prevValue - 1)}
+                        variant="primary"
+                    >Previous Page</Button>
+                </div>
+                <div className="page">{page}</div>
+                <div className="next">
+                    <Button
+                        disabled={page + 1 >= page}
+                        onClick={() => setPage(prevValue => prevValue + 1)}
+                        variant="primary"
+                    >Next Page</Button>
+                </div>
+		    </div>
         </>
     )
 }
