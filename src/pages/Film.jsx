@@ -13,12 +13,13 @@ const Film = () => {
     const [loading, setLoading] = useState(false)
 
     // Get one film
-    const getFilm = async () => {
+    const getFilm = async (id) => {
         setLoading(true) 
         try {
             const data = await SwapiAPI.getOneFilm(id)
             setFilm(data)
             setCharacters(data.characters)
+            setLoading(false)
         } catch (err) {
             setError(err.message)
         }
