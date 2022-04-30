@@ -24,8 +24,8 @@ const People = () => {
             <h1>People</h1>
             <Row xs={1} md={2} lg={3}>
 
-            {people && people.results.map((person) => (
-                <Col>
+            {people && people.results.map((person, index) => (
+                <Col key={index}>
                     <div className="card"> 
                         <div className="cardHeader">
                             <h3>{person.name}</h3>

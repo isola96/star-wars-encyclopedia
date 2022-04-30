@@ -23,9 +23,9 @@ const Films = () => {
        <>
         <h1>Films</h1>
             <Row xs={1} md={2} lg={3}>
-            {films && films.results.map((film) => (
-                <Col>
-                    <div key={film.episode_id} className="card"> 
+            {films && films.results.map((film, index) => (
+                <Col key={index}>
+                    <div className="card"> 
                         <div className="cardHeader">
                             <h3>{film.title}</h3>
                         </div>
