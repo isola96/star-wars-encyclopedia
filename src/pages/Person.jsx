@@ -35,7 +35,7 @@ const Person = () => {
             {error && {error}}
 
             {loading && !person && (
-                <p>Loading...</p>
+                <h3>Loading...</h3>
             )}
 
             {person && (
@@ -137,9 +137,10 @@ const Person = () => {
                             </div>
                             <div className='buttonWrapper'>
                                 <Button 
-                                    className="btn" 
+                                    className="btn"
+                                    primary="dark" 
                                     as={Link} 
-                                    to={'/persons'}
+                                    to={'/people'}
                                 >Back</Button>
                             </div>
                         </div>

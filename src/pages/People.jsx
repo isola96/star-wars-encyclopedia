@@ -35,7 +35,7 @@ const People = () => {
             {error && {error}}
 
             {loading && !people && (
-                <p>Loading...</p>
+                <h3>Loading...</h3>
             )}
 
             {people && people.results.map((person, index) => (
@@ -58,7 +58,7 @@ const People = () => {
 
                         <div className='buttonWrapper'>
                             <Button 
-                                variant="primary" 
+                                variant="outline-dark" 
                                 as={Link} 
                                 to={`/people/${getIdFromUrl(person.url)}`}
                             >Read more</Button>
@@ -72,7 +72,7 @@ const People = () => {
                     <Button
                         disabled={!people.previous || page <= 1}
                         onClick={() => setPage(prevValue => prevValue - 1)}                        
-                        variant="primary"
+                        variant="light"
                     >Previous Page</Button>
                 </div>
                 <div className="page">{page} / 9 </div>
@@ -80,7 +80,7 @@ const People = () => {
                     <Button
                         disabled={!people.next || page >= 9}
                         onClick={() => setPage(prevValue => prevValue + 1)}
-                        variant="primary"
+                        variant="light"
                     >Next Page</Button>
                 </div>
 		    </div>

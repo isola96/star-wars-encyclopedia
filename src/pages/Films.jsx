@@ -34,7 +34,7 @@ const Films = () => {
         {error && {error}}
 
         {loading && (
-            <p>Loading...</p>
+            <h3>Loading...</h3>
         )}
 
         {films && films.results.map((film, index) => (
@@ -58,7 +58,7 @@ const Films = () => {
 
                     <div className='buttonWrapper'>
                         <Button 
-                            variant="primary" 
+                            variant="outline-dark"
                             as={Link} 
                             to={`/films/${getIdFromUrl(film.url)}`}
                         >Read more</Button>
@@ -72,7 +72,7 @@ const Films = () => {
                 <Button
                     disabled={page === 1}
                     onClick={() => setPage(prevValue => prevValue - 1)}
-                    variant="primary"
+                    variant="light"
                 >Previous Page</Button>
             </div>
             <div className="page">{page} / 1</div>
@@ -80,7 +80,7 @@ const Films = () => {
                 <Button
                     disabled={page + 1 >= page}
                     onClick={() => setPage(prevValue => prevValue + 1)}
-                    variant="primary"
+                    variant="light"
                 >Next Page</Button>
             </div>
         </div>

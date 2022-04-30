@@ -35,7 +35,7 @@ const Film = () => {
             {error && {error}}
 
             {loading && !film && (
-                <p>Loading...</p>
+                <h3>Loading...</h3>
             )}
 
             {film && (
@@ -104,6 +104,7 @@ const Film = () => {
                             <div className='buttonWrapper'>
                                 <Button 
                                     className="btn" 
+                                    primary="dark"
                                     as={Link} 
                                     to={'/films'}
                                 >Back</Button>
