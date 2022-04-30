@@ -9,12 +9,19 @@ const Film = () => {
     const [film, setFilm] = useState([])
     const { id } = useParams()
     const [characters, setCharacters] = useState([])
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
 
     // Get one film
     const getFilm = async () => {
-        const data = await SwapiAPI.getOneFilm(id)
-        setFilm(data)
-        setCharacters(data.characters)
+        setLoading(true) 
+        try {
+            const data = await SwapiAPI.getOneFilm(id)
+            setFilm(data)
+            setCharacters(data.characters)
+        } catch (err) {
+            setError(err.message)
+        }
 	}
 
     // Get film from API when component is first mounted
@@ -24,79 +31,86 @@ const Film = () => {
 
     return (
         <>
-            <Row>
-                <Col>
-                    <div className="card">
-                        <div className="cardHeader"><h2>{film.title}</h2></div>
-                        <div className="cardBody">
-                            <Row className="cardRow" md={3}>
-                                <Col className="cardColLeft">
-                                    <p>Episode: </p>
-                                </Col>
-                                <Col className="cardColRight">
-                                    <p>{film.episode_id}</p>
-                                </Col>
-                            </Row>
+            {error && {error}}
 
-                            <Row className="cardRow" md={3}>
-                                <Col className="cardColLeft">
-                                    <p>Director: </p>
-                                </Col>
-                                <Col className="cardColRight">
-                                    <p>{film.director}</p>
-                                </Col>
-                            </Row>
+            {loading && !film && (
+                <p>Loading...</p>
+            )}
 
-                            <Row className="cardRow" md={3}>
-                                <Col className="cardColLeft">
-                                    <p>Producer: </p>
-                                </Col>
-                                <Col className="cardColRight">
-                                    <p>{film.producer}</p>
-                                </Col>
-                            </Row>
+            {film && (
+                <Row>
+                    <Col>
+                        <div className="card">
+                            <div className="cardHeader"><h2>{film.title}</h2></div>
+                            <div className="cardBody">
+                                <Row className="cardRow" md={3}>
+                                    <Col className="cardColLeft">
+                                        <p>Episode: </p>
+                                    </Col>
+                                    <Col className="cardColRight">
+                                        <p>{film.episode_id}</p>
+                                    </Col>
+                                </Row>
 
-                            <Row className="cardRow"  md={3}>
-                                <Col className="cardColLeft">
-                                    <p>Release date: </p>
-                                </Col>
-                                <Col className="cardColRight">
-                                    <p>{film.release_date}</p>
-                                </Col>
-                            </Row>
+                                <Row className="cardRow" md={3}>
+                                    <Col className="cardColLeft">
+                                        <p>Director: </p>
+                                    </Col>
+                                    <Col className="cardColRight">
+                                        <p>{film.director}</p>
+                                    </Col>
+                                </Row>
 
-                            <Row className="cardRow" md={1}>
-                                <Col>
-                                    <h3>Characters in this film:</h3>
-                                </Col>
-                            </Row>
+                                <Row className="cardRow" md={3}>
+                                    <Col className="cardColLeft">
+                                        <p>Producer: </p>
+                                    </Col>
+                                    <Col className="cardColRight">
+                                        <p>{film.producer}</p>
+                                    </Col>
+                                </Row>
 
-                            <Row className="cardRow" md={3}>
-                                <Col className="cardColLeft">
-                                    <p>Characters</p>
-                                </Col>
+                                <Row className="cardRow"  md={3}>
+                                    <Col className="cardColLeft">
+                                        <p>Release date: </p>
+                                    </Col>
+                                    <Col className="cardColRight">
+                                        <p>{film.release_date}</p>
+                                    </Col>
+                                </Row>
 
-                                <Col className="cardColRight">
-                                    {characters.map(character => (
-                                        <Link to={`/people/${getIdFromUrl(character)}`} key={character}>
-                                            <li>Character {getIdFromUrl(character)}</li>
-                                        </Link>
-                                    ))} 
-                                </Col>
-                            </Row>
+                                <Row className="cardRow" md={1}>
+                                    <Col>
+                                        <h3>Characters in this film:</h3>
+                                    </Col>
+                                </Row>
 
+                                <Row className="cardRow" md={3}>
+                                    <Col className="cardColLeft">
+                                        <p>Characters</p>
+                                    </Col>
+
+                                    <Col className="cardColRight">
+                                        {characters.map(character => (
+                                            <Link to={`/people/${getIdFromUrl(character)}`} key={character}>
+                                                <li>Character {getIdFromUrl(character)}</li>
+                                            </Link>
+                                        ))} 
+                                    </Col>
+                                </Row>
+
+                            </div>
+                            <div className='buttonWrapper'>
+                                <Button 
+                                    className="btn" 
+                                    as={Link} 
+                                    to={'/films'}
+                                >Back</Button>
+                            </div>
                         </div>
-                        <div className='buttonWrapper'>
-                            <Button 
-                                className="btn" 
-                                as={Link} 
-                                to={'/films'}
-                            >Back</Button>
-                        </div>
-                    </div>
-                </Col>
-            </Row>  
-            
+                    </Col>
+                </Row>  
+            )}
         </>
     )
 }

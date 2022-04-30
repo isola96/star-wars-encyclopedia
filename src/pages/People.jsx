@@ -7,11 +7,19 @@ import { getIdFromUrl } from '../helpers/index'
 const People = () => {
     const [people, setPeople] = useState("")
     const [page, setPage] = useState(1)
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
 
     // Get people from API
     const getPeople = async (page) => {
-            const data = await Swapi.getPeople(page)
-            setPeople(data)
+            setLoading(true)
+            try {
+                const data = await Swapi.getPeople(page)
+                setPeople(data)
+                setLoading(false)
+            } catch (err) {
+                setError(err.message)
+            }
         }
 
     // Get people from API when component is first mounted
@@ -23,6 +31,12 @@ const People = () => {
         <>
             <h1>People</h1>
             <Row xs={1} md={2} lg={3}>
+            
+            {error && {error}}
+
+            {loading && !people && (
+                <p>Loading...</p>
+            )}
 
             {people && people.results.map((person, index) => (
                 <Col key={index}>
