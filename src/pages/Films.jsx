@@ -33,7 +33,7 @@ const Films = () => {
         <Row xs={1} md={2} lg={3}>
         {error && {error}}
 
-        {loading && !films && (
+        {loading && (
             <p>Loading...</p>
         )}
 
@@ -75,7 +75,7 @@ const Films = () => {
                     variant="primary"
                 >Previous Page</Button>
             </div>
-            <div className="page">{page}</div>
+            <div className="page">{page} / 1</div>
             <div className="next">
                 <Button
                     disabled={page + 1 >= page}

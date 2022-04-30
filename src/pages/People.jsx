@@ -75,7 +75,7 @@ const People = () => {
                         variant="primary"
                     >Previous Page</Button>
                 </div>
-                <div className="page">{page}</div>
+                <div className="page">{page} / 9 </div>
                 <div className="next">
                     <Button
                         disabled={!people.next || page >= 9}
