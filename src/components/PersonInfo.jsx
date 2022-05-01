@@ -41,7 +41,7 @@ const PersonInfo = () => {
             {person && (
                 <Row>
                     <Col>
-                    <div className="card">
+                        <div className="card">
                             <div className="cardHeader"><h2>{person.name}</h2></div>
                             <div className="cardBody">
                                 <Row className="cardRow" md={1}>
@@ -49,7 +49,6 @@ const PersonInfo = () => {
                                         <h3>Attributes </h3>
                                     </Col>
                                 </Row>
-
                                 <Row className="cardRow" md={3}>
                                     <Col className="cardColLeft">
                                         <p>Gender </p>
@@ -58,7 +57,6 @@ const PersonInfo = () => {
                                         <p>{person.gender}</p>
                                     </Col>
                                 </Row>
-
                                 <Row className="cardRow" md={3}>
                                     <Col className="cardColLeft">
                                         <p>Birth year </p>
@@ -67,7 +65,6 @@ const PersonInfo = () => {
                                         <p>{person.birth_year}</p>
                                     </Col>
                                 </Row>
-
                                 <Row className="cardRow" md={3}>
                                     <Col className="cardColLeft">
                                         <p>Height </p>
@@ -76,7 +73,6 @@ const PersonInfo = () => {
                                         <p>{person.height}</p>
                                     </Col>
                                 </Row>
-
                                 <Row className="cardRow"  md={3}>
                                     <Col className="cardColLeft">
                                         <p>Mass </p>
@@ -85,7 +81,6 @@ const PersonInfo = () => {
                                         <p>{person.mass}</p>
                                     </Col>
                                 </Row>
-
                                 <Row className="cardRow"  md={3}>
                                     <Col className="cardColLeft">
                                         <p>Hair color </p>
@@ -94,7 +89,6 @@ const PersonInfo = () => {
                                         <p>{person.hair_color}</p>
                                     </Col>
                                 </Row>
-
                                 <Row className="cardRow"  md={3}>
                                     <Col className="cardColLeft">
                                         <p>Skin color </p>
@@ -103,7 +97,6 @@ const PersonInfo = () => {
                                         <p>{person.skin_color}</p>
                                     </Col>
                                 </Row>
-
                                 <Row className="cardRow"  md={3}>
                                     <Col className="cardColLeft">
                                         <p>Eye color </p>
@@ -112,18 +105,15 @@ const PersonInfo = () => {
                                         <p>{person.eye_color}</p>
                                     </Col>
                                 </Row>
-
                                 <Row className="cardRow" md={1}>
                                     <Col>
                                         <h3>Links </h3>
                                     </Col>
                                 </Row>
-
                                 <Row className="cardRow"  md={3}>
                                     <Col className="cardColLeft">
                                         <p>Films </p>
                                     </Col>
-
                                     <Col className="cardColRight">
                                         {films.map(films => (
                                             <Link   

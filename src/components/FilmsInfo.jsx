@@ -28,62 +28,62 @@ const FilmsInfo = () => {
 	}, [])  
 
     return (
-       <>
-        <h1>Films</h1>
-        <Row xs={1} md={2} lg={3}>
-        {error && {error}}
+        <>
+            <h1>Films</h1>
 
-        {loading && (
-            <h3>Loading...</h3>
-        )}
+            <Row xs={1} md={2} lg={3}>
 
-        {films && films.results.map((film, index) => (
-            <Col key={index}>
-                <div className="card"> 
-                    <div className="cardHeader">
-                        <h3>{film.title}</h3>
+            {error && {error}}
+
+            {loading && (
+                <h3>Loading...</h3>
+            )}
+
+            {films && films.results.map((film, index) => (
+                <Col key={index}>
+                    <div className="card"> 
+                        <div className="cardHeader">
+                            <h3>{film.title}</h3>
+                        </div>
+                        <div className="cardBody">
+                            <Row>
+                                Episode {film.episode_id}
+                            </Row>
+                            <Row>
+                                Released {film.release_date}
+                            </Row>
+                            <Row>
+                                {film.characters.length} characters
+                            </Row>
+                        </div>
+                        <div className='buttonWrapper'>
+                            <Button 
+                                variant="outline-dark"
+                                as={Link} 
+                                to={`/films/${getIdFromUrl(film.url)}`}
+                            >Read more</Button>
+                        </div>
                     </div>
-
-                    <div className="cardBody">
-                        <Row>
-                            Episode {film.episode_id}
-                        </Row>
-                        <Row>
-                            Released {film.release_date}
-                        </Row>
-                        <Row>
-                            {film.characters.length} characters
-                        </Row>
-                    </div>
-
-                    <div className='buttonWrapper'>
-                        <Button 
-                            variant="outline-dark"
-                            as={Link} 
-                            to={`/films/${getIdFromUrl(film.url)}`}
-                        >Read more</Button>
-                    </div>
+                </Col>
+            ))}
+            </Row>
+            <div className="d-flex justify-content-between align-items-center mt-4">
+                <div className="prev">
+                    <Button
+                        disabled={page === 1}
+                        onClick={() => setPage(prevValue => prevValue - 1)}
+                        variant="light"
+                    >Previous Page</Button>
                 </div>
-            </Col>
-        ))}
-        </Row>
-        <div className="d-flex justify-content-between align-items-center mt-4">
-            <div className="prev">
-                <Button
-                    disabled={page === 1}
-                    onClick={() => setPage(prevValue => prevValue - 1)}
-                    variant="light"
-                >Previous Page</Button>
+                <div className="page">{page} / 1</div>
+                <div className="next">
+                    <Button
+                        disabled={page + 1 >= page}
+                        onClick={() => setPage(prevValue => prevValue + 1)}
+                        variant="light"
+                    >Next Page</Button>
+                </div>
             </div>
-            <div className="page">{page} / 1</div>
-            <div className="next">
-                <Button
-                    disabled={page + 1 >= page}
-                    onClick={() => setPage(prevValue => prevValue + 1)}
-                    variant="light"
-                >Next Page</Button>
-            </div>
-        </div>
         </>
     )
 }

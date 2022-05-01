@@ -14,11 +14,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './App.css'
 
 const App = () => {
-
 	return (
 		<div id="App">
 			<Navigation />
-
 			<Container className="py-3">
 				<Routes>
 					<Route path="/" element={<HomePage />} />

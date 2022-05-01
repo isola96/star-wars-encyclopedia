@@ -99,7 +99,6 @@ const FilmInfo = () => {
                                         ))} 
                                     </Col>
                                 </Row>
-
                             </div>
                             <div className='buttonWrapper'>
                                 <Button 

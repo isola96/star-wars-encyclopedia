@@ -30,6 +30,7 @@ const PeopleInfo = () => {
     return (
         <>
             <h1>People</h1>
+
             <Row xs={1} md={2} lg={3}>
             
             {error && {error}}
@@ -55,7 +56,6 @@ const PeopleInfo = () => {
                                 In: {person.films.length} films
                             </Row>
                         </div>
-
                         <div className='buttonWrapper'>
                             <Button 
                                 variant="outline-dark" 
