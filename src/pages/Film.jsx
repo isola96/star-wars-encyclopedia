@@ -104,7 +104,7 @@ const Film = () => {
                             <div className='buttonWrapper'>
                                 <Button 
                                     className="btn" 
-                                    primary="dark"
+                                    variant="outline-dark"
                                     as={Link} 
                                     to={'/films'}
                                 >Back</Button>

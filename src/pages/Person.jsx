@@ -138,7 +138,7 @@ const Person = () => {
                             <div className='buttonWrapper'>
                                 <Button 
                                     className="btn"
-                                    primary="dark" 
+                                    variant="outline-dark" 
                                     as={Link} 
                                     to={'/people'}
                                 >Back</Button>

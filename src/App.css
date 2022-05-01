@@ -1,3 +1,39 @@
 h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 0.75em;
 }
+
+body {
+	background-image: url("../src/assets/star-wars-bg.jpg");
+	color: white;
+}
+
+h1 {
+	text-align: center;
+}
+
+.card {
+	color: black;
+	margin-right: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.row {
+	--bs-gutter-x: -0.5rem;
+}
+
+.cardHeader h3 {
+	text-align: center;
+}
+
+.buttonWrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.col a {
+	color: black;
+}
+
+.col a:hover {
+	color: grey;
+}
